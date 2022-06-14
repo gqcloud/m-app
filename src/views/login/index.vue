@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <van-nav-bar title="新闻头条-登录" left-text="返回"></van-nav-bar>
+    <van-nav-bar title="新闻头条-登录"></van-nav-bar>
     <van-form @submit="onSubmit">
       <van-field
         v-model="user.mobile"
@@ -63,6 +63,7 @@ export default {
         const res = await loginAPI(this.user.mobile, this.user.code)
         Toast.fail("登录成功")
         LocalCache.setCache("token", res.data.data.token)
+        this.$router.replace("/layout/home")
       } catch (error) {
         Toast.fail("登录失败，请重试")
       }
