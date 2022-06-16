@@ -8,7 +8,14 @@ import {
   Icon,
   Tab,
   Tabs,
-  Cell
+  Cell,
+  List,
+  PullRefresh,
+  ActionSheet,
+  Popup,
+  Row,
+  Col,
+  Badge
 } from "vant"
 const arr = [
   Button,
@@ -20,7 +27,14 @@ const arr = [
   Icon,
   Tabs,
   Tab,
-  Cell
+  Cell,
+  List,
+  PullRefresh,
+  ActionSheet,
+  Popup,
+  Row,
+  Col,
+  Badge
 ]
 export default function (Vue) {
   return arr.forEach((item) => Vue.use(item))
