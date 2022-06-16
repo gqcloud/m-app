@@ -50,3 +50,12 @@ export const reportArticle = (target, type, remark = "1") =>
       remark
     }
   })
+
+export const updateUserchannels = (channels) =>
+  request({
+    url: "/v1_0/user/channels",
+    method: "put",
+    data: {
+      channels
+    }
+  })

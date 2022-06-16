@@ -3,7 +3,12 @@
     <!-- 弹出层的头部区域 -->
     <van-nav-bar title="频道管理">
       <template #right>
-        <van-icon name="cross" size="0.37333334rem" color="white" />
+        <van-icon
+          name="cross"
+          size="0.37333334rem"
+          color="white"
+          @click="closeFn"
+        />
       </template>
     </van-nav-bar>
     <!-- 我的频道 -->
@@ -11,9 +16,11 @@
       <div class="channel-title">
         <span
           >我的频道
-          <span class="small-title"> 点击频道 </span>
+          <span class="small-title">
+            点击{{ isEdit ? "删除" : "进入" }}频道
+          </span>
         </span>
-        <span>111</span>
+        <span @click="editFn">{{ isEdit ? "完成" : "编辑" }}</span>
       </div>
       <!-- 我的频道列表 -->
       <van-row type="flex">
@@ -21,7 +28,11 @@
           <div class="channel-item van-hairline--surround">
             {{ item.name }}
             <!-- 删除的徽标 -->
-            <van-badge color="transparent" class="cross-badge">
+            <van-badge
+              color="transparent"
+              class="cross-badge"
+              v-show="isEdit && item.id !== 0"
+            >
               <template #content>
                 <van-icon
                   name="cross"
@@ -42,7 +53,12 @@
       </div>
       <!-- 更多频道列表 -->
       <van-row type="flex">
-        <van-col span="6" v-for="item in unCheckList" :key="item.id">
+        <van-col
+          span="6"
+          v-for="item in unCheckList"
+          :key="item.id"
+          @click="moreFn(item)"
+        >
           <div class="channel-item van-hairline--surround">{{ item.name }}</div>
         </van-col>
       </van-row>
@@ -58,7 +74,22 @@ export default {
     unCheckList: Array
   },
   data() {
-    return {}
+    return {
+      isEdit: false
+    }
+  },
+  methods: {
+    closeFn() {
+      this.$emit("closePop")
+    },
+    editFn() {
+      this.isEdit = !this.isEdit
+    },
+    moreFn(val) {
+      if (this.isEdit) {
+        this.$emit("addChannels", val)
+      }
+    }
   }
 }
 </script>

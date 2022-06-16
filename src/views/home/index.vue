@@ -34,13 +34,19 @@
       ><channel-edit
         :userList="channels"
         :unCheckList="unCheckedChannel"
+        @closePop="closePop"
+        @addChannels="addChannels"
       ></channel-edit
     ></van-popup>
   </div>
 </template>
 
 <script>
-import { getUserChannel, getAllChannelsAPI } from "@/service/api/index"
+import {
+  getUserChannel,
+  getAllChannelsAPI,
+  updateUserchannels
+} from "@/service/api/index"
 import articleList from "./cpn/articleList.vue"
 import ChannelEdit from "./cpn/channelEdit.vue"
 export default {
@@ -65,6 +71,25 @@ export default {
     async channelChangeFn() {},
     showPopup() {
       this.show = true
+    },
+    closePop() {
+      this.show = false
+    },
+    async addChannels(channel) {
+      this.channels.push(channel)
+
+      const newArr = this.channels.filter((item) => item.id !== 0)
+      const theNewArr = newArr.map((item, i) => {
+        const newObj = { ...item }
+        delete newObj.name
+        newObj.seq = i
+        return newObj
+      })
+      // newArr.forEach((item, i) => {
+      //   delete item.name
+      //   item.seq = i
+      // })
+      await updateUserchannels(theNewArr)
     }
   },
   computed: {
@@ -106,7 +131,7 @@ img {
 .tabs .more {
   z-index: 999;
   position: fixed;
-  width: 32px;
+  width: 20px;
   height: 30px;
   text-align: center;
   right: 0;
