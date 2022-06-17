@@ -5,7 +5,11 @@
         <img src="@/assets/img/logo.png" alt="" />
       </template>
       <template #right>
-        <van-icon name="search" size="0.48rem" />
+        <van-icon
+          name="search"
+          size="0.48rem"
+          @click="$router.push('/search')"
+        />
       </template>
     </van-nav-bar>
     <div class="tabs">
@@ -34,8 +38,11 @@
       ><channel-edit
         :userList="channels"
         :unCheckList="unCheckedChannel"
+        ref="editRef"
+        v-model="channelsId"
         @closePop="closePop"
         @addChannels="addChannels"
+        @removeChan="removeChan"
       ></channel-edit
     ></van-popup>
   </div>
@@ -45,7 +52,8 @@
 import {
   getUserChannel,
   getAllChannelsAPI,
-  updateUserchannels
+  updateUserchannels,
+  removeChannels
 } from "@/service/api/index"
 import articleList from "./cpn/articleList.vue"
 import ChannelEdit from "./cpn/channelEdit.vue"
@@ -74,6 +82,7 @@ export default {
     },
     closePop() {
       this.show = false
+      this.$refs.editRef.isEdit = false
     },
     async addChannels(channel) {
       this.channels.push(channel)
@@ -90,6 +99,12 @@ export default {
       //   item.seq = i
       // })
       await updateUserchannels(theNewArr)
+    },
+    async removeChan(channel) {
+      const index = this.channels.findIndex((item) => item.id === channel.id)
+      this.channels.splice(index, 1)
+
+      await removeChannels(channel.id)
     }
   },
   computed: {

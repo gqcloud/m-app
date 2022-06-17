@@ -59,3 +59,17 @@ export const updateUserchannels = (channels) =>
       channels
     }
   })
+
+export const removeChannels = (channel_id) =>
+  request({
+    url: `/v1_0/user/channels/${channel_id}`,
+    method: "delete"
+  })
+
+export const searchList = (q) =>
+  request({
+    url: "/v1_0/suggestion",
+    params: {
+      q
+    }
+  })

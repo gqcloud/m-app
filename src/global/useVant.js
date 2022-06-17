@@ -15,7 +15,8 @@ import {
   Popup,
   Row,
   Col,
-  Badge
+  Badge,
+  Search
 } from "vant"
 const arr = [
   Button,
@@ -34,7 +35,8 @@ const arr = [
   Popup,
   Row,
   Col,
-  Badge
+  Badge,
+  Search
 ]
 export default function (Vue) {
   return arr.forEach((item) => Vue.use(item))

@@ -24,7 +24,12 @@
       </div>
       <!-- 我的频道列表 -->
       <van-row type="flex">
-        <van-col span="6" v-for="item in userList" :key="item.id">
+        <van-col
+          span="6"
+          v-for="item in userList"
+          :key="item.id"
+          @click="removeChannels(item)"
+        >
           <div class="channel-item van-hairline--surround">
             {{ item.name }}
             <!-- 删除的徽标 -->
@@ -88,6 +93,16 @@ export default {
     moreFn(val) {
       if (this.isEdit) {
         this.$emit("addChannels", val)
+      }
+    },
+    removeChannels(channels) {
+      if (this.isEdit) {
+        if (channels.id !== 0) {
+          this.$emit("removeChan", channels)
+        }
+      } else {
+        this.closeFn()
+        this.$emit("input", channels.id)
       }
     }
   }
