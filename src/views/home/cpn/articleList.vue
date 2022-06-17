@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import articleItem from "./articleItem.vue"
+import articleItem from "../../../components/articleItem.vue"
 import { getArticle, dislikeArticle, reportArticle } from "@/service/api/index"
 import { Toast } from "vant"
 export default {

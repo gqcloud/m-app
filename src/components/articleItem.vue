@@ -4,21 +4,36 @@
       <template #title>
         <div class="title-box">
           <span>{{ obj.title }}</span>
-          <img
+          <!-- <img
             v-if="obj.cover.type === 1"
             class="thumb"
             :src="obj.cover.images[0]"
             alt=""
-          />
+          /> -->
+          <van-image
+            :src="obj.cover.images[0]"
+            class="thumb"
+            v-if="obj.cover.type === 1"
+          >
+            <template v-slot:error>图片走丢了</template>
+          </van-image>
         </div>
         <div class="thmb-box" v-if="obj.cover.type > 1">
-          <img
+          <!-- <img
             v-for="(item, i) in obj.cover.images"
             :key="i"
             class="thumb"
             :src="item"
             alt=""
-          />
+          /> -->
+          <van-image
+            :src="item"
+            class="thumb"
+            v-for="(item, i) in obj.cover.images"
+            :key="i"
+          >
+            <template v-slot:error>图片走丢了</template>
+          </van-image>
         </div>
       </template>
       <template #label>
@@ -29,7 +44,7 @@
             <span>{{ timeAgo(obj.pubdate) }}</span>
           </div>
         </div>
-        <van-icon name="cross" @click="show = true"></van-icon>
+        <van-icon name="cross" @click="show = true" v-if="isShow"></van-icon>
       </template>
     </van-cell>
 
@@ -55,6 +70,10 @@ export default {
     obj: {
       type: Object,
       default: () => {}
+    },
+    isShow: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

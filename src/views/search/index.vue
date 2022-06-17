@@ -112,7 +112,6 @@ export default {
     history: {
       handler() {
         const newHistory = new Set(this.history)
-        console.log(newHistory)
         const arr = Array.from(newHistory)
         LocalCache.setCache("his", arr)
       },

@@ -73,3 +73,13 @@ export const searchList = (q) =>
       q
     }
   })
+
+export const searchResult = ({ page = 1, per_page = 10, q }) =>
+  request({
+    url: "/v1_0/search",
+    params: {
+      page,
+      per_page,
+      q
+    }
+  })

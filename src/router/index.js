@@ -43,7 +43,8 @@ const routes = [
   {
     path: "/searchresult/:kw",
     name: "seacrhresult",
-    component: SearchResult
+    component: SearchResult,
+    props: true
   }
 ]
 
