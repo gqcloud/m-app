@@ -44,7 +44,11 @@
             <span>{{ timeAgo(obj.pubdate) }}</span>
           </div>
         </div>
-        <van-icon name="cross" @click="show = true" v-if="isShow"></van-icon>
+        <van-icon
+          name="cross"
+          @click.stop="show = true"
+          v-if="isShow"
+        ></van-icon>
       </template>
     </van-cell>
 

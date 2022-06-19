@@ -6,6 +6,7 @@ import Home from "@/views/home"
 import User from "@/views/user"
 import Search from "@/views/search"
 import SearchResult from "@/views/search/searchResult.vue"
+import AarticleDetail from "@/views/articleDetail"
 Vue.use(VueRouter)
 
 const routes = [
@@ -45,6 +46,11 @@ const routes = [
     name: "seacrhresult",
     component: SearchResult,
     props: true
+  },
+  {
+    path: "/articledetail",
+    name: "articledetail",
+    component: AarticleDetail
   }
 ]
 

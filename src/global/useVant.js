@@ -17,7 +17,8 @@ import {
   Col,
   Badge,
   Search,
-  Image as VanImage
+  Image as VanImage,
+  Divider
 } from "vant"
 const arr = [
   Button,
@@ -38,7 +39,8 @@ const arr = [
   Col,
   Badge,
   Search,
-  VanImage
+  VanImage,
+  Divider
 ]
 export default function (Vue) {
   return arr.forEach((item) => Vue.use(item))

@@ -83,3 +83,38 @@ export const searchResult = ({ page = 1, per_page = 10, q }) =>
       q
     }
   })
+
+export const articleDetail = ({ article_id }) =>
+  request({
+    url: `/v1_0/articles/${article_id}`
+  })
+
+export const followUser = (target) =>
+  request({
+    url: "/v1_0/user/followings",
+    method: "post",
+    data: {
+      target
+    }
+  })
+
+export const unFollowUser = (target) =>
+  request({
+    url: `/v1_0/user/followings/${target}`,
+    method: "delete"
+  })
+
+export const likeArticle = ({ target }) =>
+  request({
+    url: "/v1_0/article/likings",
+    method: "post",
+    data: {
+      target
+    }
+  })
+
+export const disLikeArticle = ({ target }) =>
+  request({
+    url: `/v1_0/article/likings/${target}`,
+    method: "delete"
+  })

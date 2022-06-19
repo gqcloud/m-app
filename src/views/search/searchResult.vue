@@ -22,6 +22,7 @@
           :key="i"
           :obj="item"
           :isShow="false"
+          @click.native="itemClick(item.art_id)"
         ></article-item>
       </van-list>
     </div>
@@ -64,6 +65,11 @@ export default {
         this.resultList = [...this.resultList, ...res.data.data.results]
         this.loading = false
       }
+    },
+    itemClick(id) {
+      this.$router.push({
+        path: `/articledetail?art_id=${id}`
+      })
     }
   }
 }

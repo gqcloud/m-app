@@ -15,6 +15,7 @@
           :obj="item"
           @dislikeFn="dislikeFn"
           @reportArt="reportArt"
+          @click.native="itemClick(item.art_id)"
         ></articleItem>
       </van-list>
     </van-pull-refresh>
@@ -81,6 +82,11 @@ export default {
     async reportArt(target, type) {
       await reportArticle(target, type)
       Toast.success("反馈成功")
+    },
+    itemClick(id) {
+      this.$router.push({
+        path: `/articledetail?art_id=${id}`
+      })
     }
   }
 }
