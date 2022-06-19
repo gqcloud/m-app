@@ -72,7 +72,7 @@
     </div>
 
     <!-- 文章评论区 -->
-    <!-- <comment-list></comment-list> -->
+    <comment-list></comment-list>
   </div>
 </template>
 
@@ -85,7 +85,12 @@ import {
   disLikeArticle
 } from "@/service/api/index"
 import { timeAgo } from "@/utils/formatTime"
+
+import CommentList from "./commentList.vue"
 export default {
+  components: {
+    CommentList
+  },
   data() {
     return {
       artObj: {},

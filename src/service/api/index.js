@@ -118,3 +118,45 @@ export const disLikeArticle = ({ target }) =>
     url: `/v1_0/article/likings/${target}`,
     method: "delete"
   })
+
+export const commentList = ({
+  type = "a",
+  source,
+  offset = null,
+  limit = 10
+}) =>
+  request({
+    url: "/v1_0/comments",
+    params: {
+      type,
+      source,
+      offset,
+      limit
+    }
+  })
+
+export const linkingComment = ({ target }) =>
+  request({
+    url: "/v1_0/comment/likings",
+    method: "post",
+    data: {
+      target
+    }
+  })
+
+export const disLikingComment = ({ target }) =>
+  request({
+    url: `/v1_0/comment/likings/${target}`,
+    method: "delete"
+  })
+
+export const sendComment = (target, content, art_id = null) =>
+  request({
+    url: "/v1_0/comments",
+    method: "post",
+    data: {
+      target,
+      content,
+      art_id
+    }
+  })
